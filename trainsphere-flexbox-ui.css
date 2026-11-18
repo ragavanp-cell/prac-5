@@ -1,0 +1,709 @@
+/* ==========================================================================
+   TrainSphere — Corporate Training & Workshops (CSS Flexbox Architecture)
+   ========================================================================== */
+
+:root {
+    --bar-bg: #1e1e1e;
+    --bar-active: #111111;
+    --bar-hover: #2c2c2c;
+    --accent-blue: #1a8cff;
+    --accent-blue-dark: #0070e0;
+    --brand-amber: #f59e0b;
+    --brand-indigo: #1e293b;
+    --surface-bg: #f8fafc;
+    --ink-dark: #0f172a;
+    --ink-muted: #475569;
+    --white: #ffffff;
+    --border-light: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--surface-bg);
+    color: var(--ink-dark);
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   1. RESPONSIVE FLEXBOX NAVIGATION MENU (Matches Reference Image Structure)
+   -------------------------------------------------------------------------- */
+.ts-flex-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--bar-bg);
+    color: var(--white);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.ts-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 0;
+}
+
+.ts-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-blue);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.ts-brand-name {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.ts-accent {
+    color: var(--brand-amber);
+}
+
+.ts-nav-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.ts-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ts-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: none;
+    color: #f1f5f9;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 1.15rem 1.35rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.ts-nav-link:hover,
+.ts-nav-item.ts-active-tab .ts-nav-link {
+    background-color: var(--bar-active);
+    color: var(--white);
+}
+
+.ts-arrow {
+    font-size: 1rem;
+    line-height: 1;
+    transform: translateY(-2px);
+}
+
+/* Dropdown Panel using Flexbox Column */
+.ts-dropdown-panel {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 195px;
+    background-color: var(--bar-active);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+    z-index: 1001;
+}
+
+.ts-nav-item.ts-dropdown:hover .ts-dropdown-panel,
+.ts-nav-item.ts-dropdown.open .ts-dropdown-panel {
+    display: flex;
+}
+
+.ts-dropdown-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 0.95rem 1.35rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.ts-dropdown-link:hover {
+    background-color: var(--bar-hover);
+    color: var(--brand-amber);
+    padding-left: 1.6rem;
+}
+
+/* Auth Buttons (Blue Log In + Outlined Sign Up) */
+.ts-auth-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: 0.85rem;
+    padding: 0.5rem 0;
+}
+
+.ts-btn-login {
+    background-color: var(--accent-blue);
+    color: var(--white);
+    border: none;
+    padding: 0.55rem 1.15rem;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ts-btn-login:hover {
+    background-color: var(--accent-blue-dark);
+}
+
+.ts-btn-signup {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid #64748b;
+    padding: 0.52rem 1.1rem;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ts-btn-signup:hover {
+    border-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.ts-mobile-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid #475569;
+    color: var(--white);
+    font-size: 1.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO SECTION
+   -------------------------------------------------------------------------- */
+.ts-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #172554 100%);
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.ts-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.ts-pill {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.16);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.ts-hero h1 {
+    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+}
+
+.ts-highlight {
+    color: var(--brand-amber);
+}
+
+.ts-hero p {
+    font-size: 1.12rem;
+    color: #cbd5e1;
+    margin-bottom: 2rem;
+}
+
+.ts-hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.ts-btn-primary {
+    background-color: var(--accent-blue);
+    color: var(--white);
+    font-weight: 700;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.ts-btn-primary:hover {
+    background-color: var(--accent-blue-dark);
+    transform: translateY(-1px);
+}
+
+.ts-btn-ghost {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.ts-btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.ts-metrics-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 960px;
+    margin: 3.5rem auto 0;
+}
+
+.ts-metric-box {
+    flex: 1 1 240px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.ts-metric-box h3 {
+    font-size: 2rem;
+    color: var(--brand-amber);
+    margin-bottom: 0.25rem;
+}
+
+.ts-metric-box p {
+    font-size: 0.92rem;
+    color: #e2e8f0;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. WORKSHOPS, PLANNER & PLANS FLEX LAYOUTS
+   -------------------------------------------------------------------------- */
+.ts-section {
+    padding: 4.5rem 2rem;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.ts-section-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+}
+
+.ts-section-head h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.ts-section-head p {
+    color: var(--ink-muted);
+}
+
+.ts-cards-flex,
+.ts-plans-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: center;
+}
+
+.ts-card,
+.ts-plan-card {
+    flex: 1 1 310px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2.1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ts-card:hover,
+.ts-plan-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+}
+
+.ts-track-badge {
+    align-self: flex-start;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    margin-bottom: 0.9rem;
+}
+
+.ts-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.65rem;
+}
+
+.ts-card p {
+    font-size: 0.93rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+}
+
+.ts-meta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1.25rem;
+}
+
+.ts-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--ink-dark);
+    color: var(--ink-dark);
+    padding: 0.78rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ts-btn-outline:hover {
+    background: var(--ink-dark);
+    color: var(--white);
+}
+
+/* Budget Calculator */
+.ts-calculator {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+}
+
+.ts-calc-controls {
+    flex: 1 1 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.ts-slider-group label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-bottom: 0.45rem;
+}
+
+.ts-slider-group input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+}
+
+.ts-slider-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.ts-calc-summary {
+    flex: 1 1 300px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.ts-summary-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1e40af;
+}
+
+.ts-summary-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--ink-dark);
+    margin: 0.4rem 0;
+}
+
+.ts-calc-summary p {
+    font-size: 0.9rem;
+    color: #1e3a8a;
+    margin-bottom: 1.5rem;
+}
+
+.ts-full {
+    width: 100%;
+}
+
+/* Plans Highlighting */
+.ts-plan-card.ts-featured,
+.ts-plan-card.tier-highlight {
+    border: 2px solid var(--accent-blue);
+    box-shadow: 0 12px 30px rgba(26, 140, 255, 0.16);
+}
+
+.ts-ribbon {
+    position: absolute;
+    top: -13px;
+    right: 20px;
+    background: var(--accent-blue);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+}
+
+.ts-plan-card h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 0.45rem;
+}
+
+.ts-price {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.ts-price span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+}
+
+.ts-plan-sub {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.4rem;
+}
+
+.ts-feature-list {
+    list-style: none;
+    margin-bottom: 1.8rem;
+    flex-grow: 1;
+}
+
+.ts-feature-list li {
+    padding: 0.45rem 0;
+    font-size: 0.92rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.ts-text-link {
+    color: var(--accent-blue-dark);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Contact & Modal */
+.ts-contact-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    background: var(--bar-bg);
+    color: var(--white);
+    padding: 3rem;
+    border-radius: 14px;
+}
+
+.ts-contact-copy {
+    flex: 1 1 340px;
+}
+
+.ts-contact-copy h2 {
+    font-size: 1.85rem;
+    margin-bottom: 0.85rem;
+}
+
+.ts-contact-copy p {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+}
+
+.ts-contact-form {
+    flex: 1 1 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+.ts-contact-form input,
+.ts-contact-form select,
+.ts-contact-form textarea,
+.ts-modal-dialog input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.ts-status-msg {
+    font-size: 0.9rem;
+    color: #fbbf24;
+    min-height: 1.2rem;
+}
+
+.ts-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.ts-modal-backdrop.open {
+    display: flex;
+}
+
+.ts-modal-dialog {
+    background: #1e1e1e;
+    color: var(--white);
+    padding: 2.25rem;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ts-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#tsModalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.ts-footer {
+    text-align: center;
+    padding: 2rem;
+    background: #111111;
+    color: #94a3b8;
+    font-size: 0.88rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE FLEXBOX MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+@media (max-width: 820px) {
+    .ts-mobile-toggle {
+        display: block;
+    }
+
+    .ts-nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        padding-bottom: 1rem;
+    }
+
+    .ts-nav-menu.mobile-active {
+        display: flex;
+    }
+
+    .ts-nav-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ts-dropdown-panel {
+        position: static;
+        box-shadow: none;
+        background-color: #161616;
+    }
+
+    .ts-auth-group {
+        margin-left: 0;
+        padding: 0.75rem 1.35rem 0;
+    }
+}

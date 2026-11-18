@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrainSphere | Corporate Training & Executive Workshops</title>
+    <link rel="stylesheet" href="trainsphere-flexbox-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Responsive Flexbox Navigation Menu (Matching Reference Practicum Layout) -->
+    <header class="ts-flex-navbar">
+        <div class="ts-brand">
+            <span class="ts-logo-badge">TS</span>
+            <a href="#" class="ts-brand-name">Train<span class="ts-accent">Sphere</span></a>
+        </div>
+
+        <button class="ts-mobile-toggle" id="tsMobileToggle" aria-label="Toggle Menu">
+            ☰
+        </button>
+
+        <nav class="ts-nav-menu" id="tsNavMenu">
+            <!-- Blog Dropdown -->
+            <div class="ts-nav-item ts-dropdown">
+                <button class="ts-nav-link ts-dropdown-btn" aria-expanded="false">
+                    Blog <span class="ts-arrow">⌄</span>
+                </button>
+                <div class="ts-dropdown-panel">
+                    <a href="#insights" class="ts-dropdown-link">Leadership Playbooks</a>
+                    <a href="#insights" class="ts-dropdown-link">AI Upskilling Guides</a>
+                    <a href="#insights" class="ts-dropdown-link">Workshop Case Studies</a>
+                </div>
+            </div>
+
+            <!-- Plans Dropdown (Exact visual inspiration: Freelancer / Startup / Enterprise) -->
+            <div class="ts-nav-item ts-dropdown ts-active-tab">
+                <button class="ts-nav-link ts-dropdown-btn" aria-expanded="false">
+                    Plans <span class="ts-arrow">⌄</span>
+                </button>
+                <div class="ts-dropdown-panel">
+                    <a href="#plans" class="ts-dropdown-link" onclick="highlightTier('Freelancer')">Freelancer</a>
+                    <a href="#plans" class="ts-dropdown-link" onclick="highlightTier('Startup')">Startup</a>
+                    <a href="#plans" class="ts-dropdown-link" onclick="highlightTier('Enterprise')">Enterprise</a>
+                </div>
+            </div>
+
+            <!-- Contact Link -->
+            <div class="ts-nav-item">
+                <a href="#contact" class="ts-nav-link">Contact</a>
+            </div>
+
+            <!-- Auth Buttons (Blue Log In + Outlined Sign Up) -->
+            <div class="ts-auth-group">
+                <button class="ts-btn-login" onclick="openPortalModal('login')">Log In</button>
+                <button class="ts-btn-signup" onclick="openPortalModal('signup')">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="ts-hero">
+        <div class="ts-hero-inner">
+            <span class="ts-pill">ISO-Certified Corporate L&D Partner</span>
+            <h1>High-Impact <span class="ts-highlight">Corporate Training</span> & Live Team Workshops</h1>
+            <p>TrainSphere equips modern workforces with hands-on technical bootcamps, executive leadership sprints, and measurable skill transformation.</p>
+            <div class="ts-hero-actions">
+                <a href="#workshops" class="ts-btn-primary">Browse Workshops</a>
+                <a href="#planner" class="ts-btn-ghost">Estimate Team Budget</a>
+            </div>
+        </div>
+
+        <div class="ts-metrics-row">
+            <div class="ts-metric-box">
+                <h3>14,500+</h3>
+                <p>Professionals Upskilled</p>
+            </div>
+            <div class="ts-metric-box">
+                <h3>96.4%</h3>
+                <p>Workshop Completion Rate</p>
+            </div>
+            <div class="ts-metric-box">
+                <h3>320+</h3>
+                <p>Enterprise Client Teams</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Workshops Catalog -->
+    <section id="workshops" class="ts-section">
+        <div class="ts-section-head">
+            <h2>Signature Corporate Workshop Tracks</h2>
+            <p>Instructor-led live cohorts delivered on-site or virtually with real-world capstone labs.</p>
+        </div>
+
+        <div class="ts-cards-flex">
+            <div class="ts-card">
+                <span class="ts-track-badge">Technical & AI</span>
+                <h3>Applied Generative AI & Workflow Automation</h3>
+                <p>Equip engineering, product, and operations teams to deploy secure AI agents and prompt pipelines.</p>
+                <div class="ts-meta">Duration: 2-Day Intensive • Live Labs</div>
+                <button class="ts-btn-outline" onclick="bookWorkshop('Applied Generative AI & Workflow Automation')">Request Syllabus</button>
+            </div>
+
+            <div class="ts-card">
+                <span class="ts-track-badge">Leadership</span>
+                <h3>Executive Decision-Making & Agile Management</h3>
+                <p>High-trust communication, cross-functional alignment, and conflict resolution for newly promoted managers.</p>
+                <div class="ts-meta">Duration: 3-Day Offsite • Roleplay Sims</div>
+                <button class="ts-btn-outline" onclick="bookWorkshop('Executive Decision-Making & Agile Management')">Request Syllabus</button>
+            </div>
+
+            <div class="ts-card">
+                <span class="ts-track-badge">Cloud & Security</span>
+                <h3>Cloud Architecture & Zero-Trust DevSecOps</h3>
+                <p>Hands-on Kubernetes, CI/CD hardening, and incident response drills led by principal architects.</p>
+                <div class="ts-meta">Duration: 4-Day Bootcamp • Sandbox Access</div>
+                <button class="ts-btn-outline" onclick="bookWorkshop('Cloud Architecture & Zero-Trust DevSecOps')">Request Syllabus</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Team Training ROI & Budget Estimator -->
+    <section id="planner" class="ts-section ts-planner-wrap">
+        <div class="ts-section-head">
+            <h2>Corporate Workshop Budget & ROI Estimator</h2>
+            <p>Adjust your cohort size and training days to calculate instant volume pricing.</p>
+        </div>
+
+        <div class="ts-calculator">
+            <div class="ts-calc-controls">
+                <div class="ts-slider-group">
+                    <label for="seatsSlider">Number of Participants: <strong id="seatsDisplay">25</strong></label>
+                    <input type="range" id="seatsSlider" min="5" max="200" step="5" value="25">
+                </div>
+                <div class="ts-slider-group">
+                    <label for="daysSlider">Workshop Duration (Days): <strong id="daysDisplay">2</strong></label>
+                    <input type="range" id="daysSlider" min="1" max="5" step="1" value="2">
+                </div>
+                <div class="ts-slider-group">
+                    <label for="formatSelect">Delivery Format:</label>
+                    <select id="formatSelect">
+                        <option value="1.0">Live Virtual Cohort (Standard)</option>
+                        <option value="1.25">On-Site Corporate Campus (+25%)</option>
+                        <option value="1.15">Hybrid Interactive Lab (+15%)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ts-calc-summary">
+                <span class="ts-summary-label">Estimated Cohort Investment</span>
+                <div class="ts-summary-price">$<span id="totalCost">6,750</span></div>
+                <p id="discountNote">Includes 10% team volume discount & post-workshop digital badges.</p>
+                <button class="ts-btn-primary ts-full" onclick="openPortalModal('quote')">Lock In Custom Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section (Matching the Nav Dropdown: Freelancer, Startup, Enterprise) -->
+    <section id="plans" class="ts-section">
+        <div class="ts-section-head">
+            <h2>Training & Workshop Membership Plans</h2>
+            <p>Flexible learning subscriptions matching the tiers in our navigation menu.</p>
+        </div>
+
+        <div class="ts-plans-flex">
+            <!-- Freelancer Plan -->
+            <div class="ts-plan-card" id="tier-Freelancer">
+                <h3>Freelancer</h3>
+                <div class="ts-price">$49<span>/month</span></div>
+                <p class="ts-plan-sub">For independent consultants & solo practitioners sharpening high-demand skills.</p>
+                <ul class="ts-feature-list">
+                    <li>✓ 2 live public workshops per month</li>
+                    <li>✓ Full on-demand lab sandbox library</li>
+                    <li>✓ Verified LinkedIn skill credentials</li>
+                    <li>✓ Community peer mastermind access</li>
+                </ul>
+                <button class="ts-btn-outline" onclick="selectMembership('Freelancer')">Choose Freelancer</button>
+            </div>
+
+            <!-- Startup Plan -->
+            <div class="ts-plan-card ts-featured" id="tier-Startup">
+                <div class="ts-ribbon">Most Popular</div>
+                <h3>Startup</h3>
+                <div class="ts-price">$499<span>/month</span></div>
+                <p class="ts-plan-sub">For fast-growing teams up to 50 seats needing quarterly custom workshops.</p>
+                <ul class="ts-feature-list">
+                    <li>✓ Up to 50 employee seats included</li>
+                    <li>✓ 1 private custom workshop per quarter</li>
+                    <li>✓ Manager skill-gap analytics dashboard</li>
+                    <li>✓ Dedicated L&D success advisor</li>
+                </ul>
+                <button class="ts-btn-primary" onclick="selectMembership('Startup')">Choose Startup</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="ts-plan-card" id="tier-Enterprise">
+                <h3>Enterprise</h3>
+                <div class="ts-price">Custom</div>
+                <p class="ts-plan-sub">For global organizations requiring multi-region cohorts, LMS SSO, and bespoke curricula.</p>
+                <ul class="ts-feature-list">
+                    <li>✓ Unlimited global seats & role tracks</li>
+                    <li>✓ On-site & virtual executive bootcamps</li>
+                    <li>✓ Okta/Azure AD SSO & LMS API sync</li>
+                    <li>✓ Pre/post competency ROI assessments</li>
+                </ul>
+                <button class="ts-btn-outline" onclick="selectMembership('Enterprise')">Contact Enterprise Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Insights Section -->
+    <section id="insights" class="ts-section">
+        <div class="ts-section-head">
+            <h2>TrainSphere L&D Insights & Blog</h2>
+            <p>Research-backed guides on workforce upskilling and corporate workshop design.</p>
+        </div>
+
+        <div class="ts-cards-flex">
+            <article class="ts-card">
+                <span class="ts-track-badge">Leadership Playbook</span>
+                <h3>Running High-Engagement Technical Workshops That Stick</h3>
+                <p>Why the 70-20-10 experiential lab model outperforms passive slide lectures by 3x in retention.</p>
+                <a href="#contact" class="ts-text-link">Read Article →</a>
+            </article>
+            <article class="ts-card">
+                <span class="ts-track-badge">AI Upskilling</span>
+                <h3>Building an Internal AI Champions Cohort in 30 Days</h3>
+                <p>A step-by-step blueprint for training cross-functional department leads on generative workflows.</p>
+                <a href="#contact" class="ts-text-link">Read Article →</a>
+            </article>
+            <article class="ts-card">
+                <span class="ts-track-badge">Case Study</span>
+                <h3>How FinCore Scaled 400 Engineers Onto Cloud-Native Stacks</h3>
+                <p>Inside a 6-week TrainSphere workshop sprint that cut deployment lead time by 48%.</p>
+                <a href="#contact" class="ts-text-link">Read Case Study →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="ts-section">
+        <div class="ts-contact-box">
+            <div class="ts-contact-copy">
+                <h2>Schedule a Custom Team Workshop</h2>
+                <p>Tell us your team size, target skills, and preferred dates. Our curriculum architects will send a tailored agenda within 1 business day.</p>
+                <p><strong>Email:</strong> workshops@trainsphere.io</p>
+                <p><strong>Global Delivery:</strong> On-Site & Live Virtual</p>
+            </div>
+            <form class="ts-contact-form" id="tsContactForm">
+                <input type="text" placeholder="Your Full Name" required>
+                <input type="email" placeholder="Work Email Address" required>
+                <select id="tsPlanDropdown">
+                    <option value="Freelancer">Plan: Freelancer</option>
+                    <option value="Startup" selected>Plan: Startup</option>
+                    <option value="Enterprise">Plan: Enterprise</option>
+                </select>
+                <input type="text" id="tsTopicInput" placeholder="Workshop Topic (e.g., AI Engineering, Leadership)">
+                <textarea rows="3" placeholder="Team size & training goals..." required></textarea>
+                <button type="submit" class="ts-btn-primary">Submit Workshop Request</button>
+                <p id="tsContactStatus" class="ts-status-msg"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ts-footer">
+        <p>© 2026 TrainSphere Corporate Training & Workshops. Powered by Responsive CSS Flexbox Architecture.</p>
+    </footer>
+
+    <!-- Auth Modal (Log In / Sign Up) -->
+    <div id="tsAuthModal" class="ts-modal-backdrop" aria-hidden="true">
+        <div class="ts-modal-dialog">
+            <button class="ts-modal-close" onclick="closePortalModal()">✕</button>
+            <h3 id="tsModalHeading">Log In to TrainSphere</h3>
+            <p id="tsModalSubtext">Access your workshop schedules, lab sandboxes, and certificates.</p>
+            <form id="tsModalForm">
+                <input type="email" placeholder="Corporate Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="ts-btn-primary ts-full" id="tsModalActionBtn">Log In</button>
+            </form>
+            <p id="tsModalStatus" class="ts-status-msg"></p>
+        </div>
+    </div>
+
+    <script src="trainsphere-workshop-logic.js"></script>
+</body>
+</html>
